@@ -16,6 +16,8 @@ var preferred_silence_time:float = 1.0
 
 var mouth_marker_position:Vector2
 
+var date_scene:PackedScene
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

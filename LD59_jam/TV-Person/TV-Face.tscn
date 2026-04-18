@@ -4,8 +4,15 @@
 [ext_resource type="FontFile" uid="uid://d0kdcwgjkb6sb" path="res://TV-Person/OrangeGumdrop-PersonalUse-Regular.otf" id="2_pkfis"]
 [ext_resource type="Script" uid="uid://5s22jy7e2c4g" path="res://TV-Person/TVTalk.gd" id="3_anpki"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_6s336"]
+viewport_path = NodePath("tv_subviewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o4ycl"]
+font = ExtResource("2_pkfis")
+font_size = 488
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_anpki"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("../../face_subviewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq20s"]
 resource_local_to_scene = true
@@ -16,26 +23,26 @@ albedo_texture = SubResource("ViewportTexture_anpki")
 [sub_resource type="QuadMesh" id="QuadMesh_f0mqp"]
 size = Vector2(0.4, 0.2)
 
-[sub_resource type="LabelSettings" id="LabelSettings_o4ycl"]
-font = ExtResource("2_pkfis")
-font_size = 488
+[node name="tv_character" type="Control" unique_id=1588441997]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Node3D" type="Node3D" unique_id=202168996]
+[node name="tv_character_Face" type="TextureRect" parent="." unique_id=445631569]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 6.0
+offset_right = 507.0
+offset_bottom = 518.0
+texture = SubResource("ViewportTexture_6s336")
 
-[node name="TV" parent="." unique_id=416074942 instance=ExtResource("1_blxxa")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TV" unique_id=199243711]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.6731526e-08, 0.045113362, -0.19138636)
-material_override = SubResource("StandardMaterial3D_kq20s")
-mesh = SubResource("QuadMesh_f0mqp")
-
-[node name="SubViewport" type="SubViewport" parent="." unique_id=325931969]
+[node name="face_subviewport" type="SubViewport" parent="." unique_id=325931969]
 disable_3d = true
 transparent_bg = true
 size = Vector2i(1024, 512)
 
-[node name="Face" type="Label" parent="SubViewport" unique_id=1913324555]
+[node name="Face" type="Label" parent="face_subviewport" unique_id=1913324555]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,5 +57,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_anpki")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=35703035]
+[node name="tv_subviewport" type="SubViewport" parent="." unique_id=1140376173]
+transparent_bg = true
+
+[node name="Node3D" type="Node3D" parent="tv_subviewport" unique_id=202168996]
+
+[node name="TV" parent="tv_subviewport/Node3D" unique_id=416074942 instance=ExtResource("1_blxxa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tv_subviewport/Node3D/TV" unique_id=199243711]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.6731526e-08, 0.045113362, -0.19138636)
+material_override = SubResource("StandardMaterial3D_kq20s")
+mesh = SubResource("QuadMesh_f0mqp")
+
+[node name="Camera3D" type="Camera3D" parent="tv_subviewport/Node3D" unique_id=35703035]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.42901638)

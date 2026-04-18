@@ -18,3 +18,7 @@ signal stopped_speaking()
 
 signal date_speaking_start()
 signal date_speaking_stop()
+
+signal date_is_happy()
+signal date_is_neutral()
+signal date_is_unhappy()

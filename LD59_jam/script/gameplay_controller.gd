@@ -133,13 +133,16 @@ func evaluate_speaking_time(delta:float):
 			date_handle.get_node("date_texture").texture = current_date_data.texture_sad
 			current_date_affection -= delta
 		else:
+			Global.date_is_happy.emit()
 			date_handle.get_node("date_texture").texture = current_date_data.texture_happy
 			current_date_affection += modified_delta
 	else:
 		if time_silence > current_date_data.preferred_silence_time and current_date_data.preferred_silence_time != -1 :
+			Global.date_is_sad.emit()
 			date_handle.get_node("date_texture").texture = current_date_data.texture_sad
 			current_date_affection -= delta
 		else:
+			Global.date_is_neutral.emit()
 			date_handle.get_node("date_texture").texture = current_date_data.texture_neutral
 			#current_date_affection 
 
