@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://dr6ddkdkimu1t" path="res://script/main_scene_controller.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://h4bsymxbfb13" path="res://art/date_default_happy.png" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://iqf7tj14xtfi" path="res://art/oda/oda_happy.png" id="2_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://cts01xyohsy0u" path="res://art/circle.png" id="3_7mycd"]
 [ext_resource type="Theme" uid="uid://b23lglt5xxhja" path="res://art/main_theme.tres" id="4_5vw27"]
 [ext_resource type="Texture2D" uid="uid://n0ke4idjvjhm" path="res://art/square.png" id="4_7mycd"]
@@ -11,6 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://bhi2aq7lo2jy0" path="res://art/dating_spectrum.png" id="8_efxa6"]
 [ext_resource type="Texture2D" uid="uid://cvpmmfw74miho" path="res://art/marker.png" id="9_dg77c"]
 [ext_resource type="AudioStream" uid="uid://cn075gxti14f4" path="res://audio/man neutral 1 example.wav" id="9_kek77"]
+[ext_resource type="VideoStream" uid="uid://1sdjnab0btwt" path="res://art/misc/mouth_A.ogv" id="12_dg77c"]
+[ext_resource type="Shader" uid="uid://jiflhbsb12q2" path="res://art/misc/greenscreen_key_shader.gdshader" id="13_ycdy4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ycdy4"]
+viewport_path = NodePath("gameplay/date/mouth/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w48qg"]
+resource_local_to_scene = true
+shader = ExtResource("13_ycdy4")
+shader_parameter/main_tex = SubResource("ViewportTexture_ycdy4")
+shader_parameter/green_treshold = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dg77c"]
+viewport_path = NodePath("gameplay/date/mouth/SubViewport")
 
 [node name="main" type="Control" unique_id=1948312814]
 layout_mode = 3
@@ -65,7 +79,37 @@ offset_right = 687.6472
 offset_bottom = 592.64716
 scale = Vector2(1.6326101, 1.6326101)
 pivot_offset_ratio = Vector2(0.208, 0.83)
-texture = ExtResource("2_lquwl")
+texture = ExtResource("2_ycdy4")
+
+[node name="mouth" type="Control" parent="gameplay/date" unique_id=777807999]
+anchors_preset = 0
+offset_left = 563.0
+offset_top = 287.0
+offset_right = 603.0
+offset_bottom = 327.0
+
+[node name="SubViewport" type="SubViewport" parent="gameplay/date/mouth" unique_id=425656312]
+transparent_bg = true
+size = Vector2i(256, 256)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="gameplay/date/mouth/SubViewport" unique_id=2006805430]
+offset_right = 256.0
+offset_bottom = 256.0
+stream = ExtResource("12_dg77c")
+volume_db = -80.0
+speed_scale = 3.0
+autoplay = true
+loop = true
+
+[node name="TextureRect" type="TextureRect" parent="gameplay/date/mouth" unique_id=2042791941]
+material = SubResource("ShaderMaterial_w48qg")
+layout_mode = 0
+offset_left = -80.0
+offset_top = -48.0
+offset_right = 80.0
+offset_bottom = 48.0
+texture = SubResource("ViewportTexture_dg77c")
+expand_mode = 1
 
 [node name="table_decoration" type="TextureRect" parent="gameplay" unique_id=1804199617]
 texture_filter = 1
@@ -242,3 +286,28 @@ script = ExtResource("8_5vw27")
 [node name="man_talking_neutral" type="AudioStreamPlayer2D" parent="audio" unique_id=1720589541]
 unique_name_in_owner = true
 stream = ExtResource("9_kek77")
+
+[node name="date_talking_neutral" type="AudioStreamPlayer2D" parent="audio" unique_id=342168471]
+unique_name_in_owner = true
+stream = ExtResource("9_kek77")
+pitch_scale = 1.6
+
+[node name="dating_pool" type="Control" parent="." unique_id=1975178248]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="between_dates" type="Control" parent="." unique_id=1561986141]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="status_label" type="Label" parent="between_dates" unique_id=2147021999]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 280.0
+offset_right = 960.0
+offset_bottom = 480.0
+theme = ExtResource("4_5vw27")
+text = "[xxxxxxxx]"
+horizontal_alignment = 1

@@ -26,6 +26,11 @@ StartMenuController="*uid://bjid2isud3i7i"
 BetweenDatesController="*uid://dwxcbasx66yuw"
 RestartGameController="*uid://domca6aj7y640"
 SimonTween="*uid://cbbsaxs2iwnfs"
+DataManager="*uid://ch0qipbydno5i"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

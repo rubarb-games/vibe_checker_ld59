@@ -15,3 +15,6 @@ signal state_changed(state:State)
 
 signal started_speaking()
 signal stopped_speaking()
+
+signal date_speaking_start()
+signal date_speaking_stop()
