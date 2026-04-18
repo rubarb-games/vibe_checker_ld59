@@ -1,9 +1,45 @@
 [gd_scene format=3 uid="uid://cqow47bch5ocs"]
 
-[node name="Control" type="Control" unique_id=1948312814]
+[ext_resource type="Script" uid="uid://dr6ddkdkimu1t" path="res://script/main_scene_controller.gd" id="1_ig7tw"]
+
+[node name="main" type="Control" unique_id=1948312814]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="start_menu" type="Control" parent="." unique_id=601951402]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="gameplay" type="Control" parent="." unique_id=618260156]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="gameplay" unique_id=764323765]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 70.0
+offset_right = 699.0
+offset_bottom = 566.0
+color = Color(0.5556706, 0.7794742, 0.84218806, 1)
+
+[node name="table" type="ColorRect" parent="gameplay" unique_id=1592934181]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 467.0
+offset_right = 952.0
+offset_bottom = 732.0
+
+[node name="end_screen" type="Control" parent="." unique_id=769559385]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
