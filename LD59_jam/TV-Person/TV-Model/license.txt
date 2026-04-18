@@ -1,0 +1,8 @@
+Model Information:
+* title:	Retro Lowpoly CRT TV
+* source:	https://sketchfab.com/3d-models/retro-lowpoly-crt-tv-911eec73bc6a406e861685eeffce3151
+* author:	lonesomeducky (https://sketchfab.com/lonesomeducky)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
