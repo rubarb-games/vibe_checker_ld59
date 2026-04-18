@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://dr6ddkdkimu1t" path="res://script/main_scene_controller.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://h4bsymxbfb13" path="res://art/date_default_happy.png" id="2_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cts01xyohsy0u" path="res://art/circle.png" id="3_7mycd"]
+[ext_resource type="Theme" uid="uid://b23lglt5xxhja" path="res://art/main_theme.tres" id="4_5vw27"]
+[ext_resource type="Texture2D" uid="uid://n0ke4idjvjhm" path="res://art/square.png" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bdas6ijel5yye" path="res://art/face_talk.png" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://cjh14pmqgcwra" path="res://art/voice_lines_art.png" id="5_5vw27"]
+[ext_resource type="Script" uid="uid://dd0fh2asq245a" path="res://script/audio_manager.gd" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://bhi2aq7lo2jy0" path="res://art/dating_spectrum.png" id="8_efxa6"]
+[ext_resource type="Texture2D" uid="uid://cvpmmfw74miho" path="res://art/marker.png" id="9_dg77c"]
+[ext_resource type="AudioStream" uid="uid://cn075gxti14f4" path="res://audio/man neutral 1 example.wav" id="9_kek77"]
 
 [node name="main" type="Control" unique_id=1948312814]
 layout_mode = 3
@@ -12,34 +22,223 @@ grow_vertical = 2
 script = ExtResource("1_ig7tw")
 
 [node name="start_menu" type="Control" parent="." unique_id=601951402]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start_game_button" type="Button" parent="start_menu" unique_id=381203081]
+custom_minimum_size = Vector2(125, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = 84.0
+offset_right = 30.5
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "START!"
 
 [node name="gameplay" type="Control" parent="." unique_id=618260156]
-visible = false
+anchors_preset = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 39.0
+
+[node name="date" type="Control" parent="gameplay" unique_id=260640383]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="gameplay" unique_id=764323765]
+[node name="date_texture" type="TextureRect" parent="gameplay/date" unique_id=2132361437]
+texture_filter = 1
 layout_mode = 0
-offset_left = 431.0
-offset_top = 70.0
-offset_right = 699.0
-offset_bottom = 566.0
-color = Color(0.5556706, 0.7794742, 0.84218806, 1)
+offset_left = 332.00003
+offset_top = 237.00002
+offset_right = 687.6472
+offset_bottom = 592.64716
+scale = Vector2(1.6326101, 1.6326101)
+pivot_offset_ratio = Vector2(0.208, 0.83)
+texture = ExtResource("2_lquwl")
 
-[node name="table" type="ColorRect" parent="gameplay" unique_id=1592934181]
+[node name="table_decoration" type="TextureRect" parent="gameplay" unique_id=1804199617]
+texture_filter = 1
 layout_mode = 0
-offset_left = 144.0
-offset_top = 467.0
-offset_right = 952.0
-offset_bottom = 732.0
+offset_left = 172.00002
+offset_top = 568.0
+offset_right = 756.85645
+offset_bottom = 781.2833
+scale = Vector2(1.6326101, 1.6326101)
+pivot_offset_ratio = Vector2(0.208, 0.83)
+texture = ExtResource("3_7mycd")
+
+[node name="status_label" type="Label" parent="gameplay" unique_id=1766420654]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 281.0
+offset_right = 698.0
+offset_bottom = 341.0
+theme = ExtResource("4_5vw27")
+text = "[xxxxxxxx]"
+
+[node name="timer" type="TextureRect" parent="gameplay" unique_id=266605066]
+texture_filter = 1
+layout_mode = 0
+offset_left = 36.00001
+offset_top = 78.00002
+offset_right = 198.00195
+offset_bottom = 206.00003
+scale = Vector2(1.6326101, 1.6326101)
+pivot_offset_ratio = Vector2(0.208, 0.83)
+texture = ExtResource("4_7mycd")
+
+[node name="timer_label" type="Label" parent="gameplay/timer" unique_id=344484500]
+layout_mode = 0
+offset_left = -55.54499
+offset_top = 46.0664
+offset_right = 217.45502
+offset_bottom = 106.0664
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("4_5vw27")
+text = "[xx]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="timer_text_label" type="Label" parent="gameplay/timer" unique_id=2099179091]
+layout_mode = 0
+offset_left = 46.745193
+offset_top = 19.115688
+offset_right = 113.50945
+offset_bottom = 51.11569
+theme = ExtResource("4_5vw27")
+theme_override_font_sizes/font_size = 32
+text = "Time"
+
+[node name="talking" type="Control" parent="gameplay" unique_id=201765741]
+anchors_preset = 0
+offset_left = 565.0
+offset_top = 477.0
+offset_right = 605.0
+offset_bottom = 517.0
+
+[node name="talking_backing" type="TextureRect" parent="gameplay/talking" unique_id=647273344]
+modulate = Color(0.6735416, 0.6711053, 0.23361889, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -121.99999
+offset_top = -63.99994
+offset_right = 50.633156
+offset_bottom = 108.63321
+scale = Vector2(1.6326101, 1.6326101)
+pivot_offset_ratio = Vector2(0.208, 0.83)
+texture = ExtResource("3_7mycd")
+
+[node name="talking_icon" type="TextureRect" parent="gameplay/talking" unique_id=728550348]
+texture_filter = 1
+layout_mode = 0
+offset_left = -175.99998
+offset_top = -119.79144
+offset_right = -47.999985
+offset_bottom = 8.208588
+scale = Vector2(1.6326101, 1.6326101)
+texture = ExtResource("4_272bh")
+
+[node name="talking_voice_lines" type="TextureRect" parent="gameplay/talking" unique_id=601059920]
+texture_filter = 1
+layout_mode = 0
+offset_left = -19.999954
+offset_top = -105.79147
+offset_right = 108.00008
+offset_bottom = 22.208527
+scale = Vector2(1.6326101, 1.6326101)
+pivot_offset_ratio = Vector2(0.208, 0.83)
+texture = ExtResource("5_5vw27")
+
+[node name="theme_spectrum_transform" type="Control" parent="gameplay" unique_id=167611799]
+anchors_preset = 0
+offset_left = 235.0
+offset_top = 567.0
+offset_right = 275.0
+offset_bottom = 607.0
+
+[node name="theme_spectrum" type="NinePatchRect" parent="gameplay/theme_spectrum_transform" unique_id=73428301]
+layout_mode = 0
+offset_right = 665.0
+offset_bottom = 108.0
+pivot_offset_ratio = Vector2(0.5, 0)
+texture = ExtResource("8_efxa6")
+patch_margin_left = 58
+patch_margin_right = 45
+
+[node name="marker" type="TextureRect" parent="gameplay/theme_spectrum_transform/theme_spectrum" unique_id=1738602858]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -56.0
+offset_right = 37.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.569, 0.847)
+texture = ExtResource("9_dg77c")
+
+[node name="theme_A" type="Label" parent="gameplay/theme_spectrum_transform/theme_spectrum" unique_id=599710838]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -94.0
+offset_right = 123.0
+offset_bottom = 34.0
+grow_vertical = 2
+theme = ExtResource("4_5vw27")
+theme_override_font_sizes/font_size = 32
+text = "I like 
+trash"
+horizontal_alignment = 1
+
+[node name="theme_B" type="Label" parent="gameplay/theme_spectrum_transform/theme_spectrum" unique_id=92785345]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -94.0
+offset_right = 76.0
+offset_bottom = 34.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("4_5vw27")
+theme_override_font_sizes/font_size = 32
+text = "Pepsi is
+cool though"
+horizontal_alignment = 1
 
 [node name="end_screen" type="Control" parent="." unique_id=769559385]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="audio" type="Control" parent="." unique_id=2112116749]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_5vw27")
+
+[node name="man_talking_neutral" type="AudioStreamPlayer2D" parent="audio" unique_id=1720589541]
+unique_name_in_owner = true
+stream = ExtResource("9_kek77")

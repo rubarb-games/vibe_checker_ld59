@@ -3,7 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	Global.main_scene_ready.connect(on_main_scene_ready)
 
 func setup():
 	get_refs()
@@ -26,7 +26,7 @@ func set_gameplay():
 func set_score_menu():
 	change_state(Global.State.SCORE_SCREEN)
 	
-func set_date_transition():
+func set_between_dates():
 	change_state(Global.State.BETWEEN_DATES)
 	
 func change_state(state:Global.State):
@@ -37,3 +37,6 @@ func change_state(state:Global.State):
 	
 	Global.state = state
 	Global.state_changed.emit(state, prev_state)
+
+func on_main_scene_ready():
+	setup()
